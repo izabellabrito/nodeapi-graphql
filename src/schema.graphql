@@ -1,0 +1,28 @@
+# Define as rotas
+
+# Não é usuario do banco de dados, é o formato do usuário na requisição à api
+# ! > obrigátorio
+type User {
+    id: ID!
+    name: String!
+    email: String!
+}
+
+input UserInput {
+    name: String!
+    email: String!
+}
+
+# ! > tudo do array tem que ser do tipo User
+# []! toda requisição para usuários deve retornar o array, não pode retornar null
+# :User > retorna um usuário
+type Query {
+    users: [User!]!
+    user(id: ID!): User
+}
+
+type Mutation {
+    createUser(name: String!, email: String!): User
+    updateUser(id: ID!, input: UserInput!): User
+    deleteUser(id: ID!): User
+}
